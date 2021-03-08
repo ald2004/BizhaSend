@@ -28,7 +28,8 @@
 
 
 ### 三、绑定域名并访问
-docker run node:10 /bin/bash
+docker pull node:10
+docker run -it -v "$PWD":/usr/src/app node:10 /bin/bash
 npm package.json
 docker commit ... node:10
 
