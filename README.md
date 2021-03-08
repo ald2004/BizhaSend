@@ -28,15 +28,18 @@
 
 
 ### 三、绑定域名并访问
+```python
 docker pull node:10
 docker run -it -v "$PWD":/usr/src/app node:10 /bin/bash
 npm package.json
 docker commit ... node:10
+```
 
-
+```python
 #!/bin/bash
 touch nohup.out
 rm ./nohup.out || true
 docker stop $(docker ps -a -q --filter "name=cowtrans") || true
 docker rm cowtrans || true
 nohup docker run --rm --name cowtrans -p 80:3000 -v /opt/BizhaSend-master:/usr/src/app -v /dev/shm/nginx_upload/:/usr/src/app/data -w /usr/src/app node:10 node app.js &
+```
