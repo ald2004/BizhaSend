@@ -1,32 +1,41 @@
-# ËµÃ÷
-`psi-4ward/psitransfer`ºº»¯°æ±¾¡£
+# è¯´æ˜
+`psi-4ward/psitransfer`æ±‰åŒ–ç‰ˆæœ¬ã€‚
 
-#### Ò»¡¢³ÉÕ¾Ğ§¹û
+#### ä¸€ã€æˆç«™æ•ˆæœ
 
 ![mark](http://imgs.bizha.top/imgs/20200514/RPN2ab8ID6xJ.png?imageslim)
 
-ÀàËÆÓÚ`https://send.firefox.com/`¡¢`https://cowtransfer.com/`
+ç±»ä¼¼äº`https://send.firefox.com/`ã€`https://cowtransfer.com/`
 
-#### ¶ş¡¢ĞéÄâÖ÷»ú°²×°
+#### äºŒã€è™šæ‹Ÿä¸»æœºå®‰è£…
 
-Ö§³Ö`nodejs`µÄĞéÄâÖ÷»ú£¬Èç[ÀÏÑ¦Ö÷»ú](https://my.laoxuehost.com/aff.php?aff=7296)£¬ĞÂÓÃ»§ÇëÊ¹ÓÃÍÆ¼öÂë`one`ÏíÊÜ 75ÕÛ¡£
+æ”¯æŒ`nodejs`çš„è™šæ‹Ÿä¸»æœºï¼Œå¦‚[è€è–›ä¸»æœº](https://my.laoxuehost.com/aff.php?aff=7296)ï¼Œæ–°ç”¨æˆ·è¯·ä½¿ç”¨æ¨èç `one`äº«å— 75æŠ˜ã€‚
 
-½øÈë`cPanel`->`Node.js`£¬ÌîĞ´¡£
+è¿›å…¥`cPanel`->`Node.js`ï¼Œå¡«å†™ã€‚
 
 ![mark](http://imgs.bizha.top/imgs/20200514/guTAft5DhQ3X.png?imageslim)
 
 
 
-ÔÚÎÄ¼ş¹ÜÀíÖĞÉÏ´«Ô´Âë£º
+åœ¨æ–‡ä»¶ç®¡ç†ä¸­ä¸Šä¼ æºç ï¼š
 
 ![mark](http://imgs.bizha.top/imgs/20200514/AbLHXw0prnm2.png?imageslim)
 
-ÔÙ´Î½øÈë`nodesjs`£¬°²×°`package.json`¡£
+å†æ¬¡è¿›å…¥`nodesjs`ï¼Œå®‰è£…`package.json`ã€‚
 
 ![mark](http://imgs.bizha.top/imgs/20200514/F7Lidin0zr7f.png?imageslim)
 
 
 
-### Èı¡¢°ó¶¨ÓòÃû²¢·ÃÎÊ
+### ä¸‰ã€ç»‘å®šåŸŸåå¹¶è®¿é—®
+docker run node:10 /bin/bash
+npm package.json
+docker commit ... node:10
 
-ÂÔ¡£
+
+#!/bin/bash
+touch nohup.out
+rm ./nohup.out || true
+docker stop $(docker ps -a -q --filter "name=cowtrans") || true
+docker rm cowtrans || true
+nohup docker run --rm --name cowtrans -p 80:3000 -v /opt/BizhaSend-master:/usr/src/app -v /dev/shm/nginx_upload/:/usr/src/app/data -w /usr/src/app node:10 node app.js &
